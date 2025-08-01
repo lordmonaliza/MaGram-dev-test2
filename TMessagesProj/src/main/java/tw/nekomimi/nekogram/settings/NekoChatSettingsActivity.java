@@ -53,6 +53,7 @@ import org.telegram.ui.Components.UndoView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import kotlin.Unit;
@@ -330,7 +331,7 @@ public class NekoChatSettingsActivity extends BaseNekoXSettingsActivity implemen
     // Extra Settings
     private final AbstractConfigCell headerExtraSettings = cellGroup.appendCell(new ConfigCellHeader(getString(R.string.ExtraSettings)));
     private final AbstractConfigCell hiddenChatEnabledRow = cellGroup.appendCell(new ConfigCellTextCheck(NekoConfig.hiddenChatEnabled, getString(R.string.HiddenChatDescription)));
-    private final AbstractConfigCell hiddenChatPinRow = cellGroup.appendCell(new ConfigCellTextInput(null, NekoConfig.hiddenChatPin, LocaleController.getString(R.string.HiddenChatPinHint), null, input -> input.length() == 4 && input.matches("\\d+") ? input : null));
+    private final AbstractConfigCell hiddenChatPinRow = cellGroup.appendCell(new ConfigCellTextInput(null, NekoConfig.hiddenChatPin, LocaleController.getString(R.string.HiddenChatPinHint), null, (Function<String, String>) input -> input.length() == 4 && input.matches("\\d+") ? input : null));
     private final AbstractConfigCell hiddenChatAutoExitTimeRow = cellGroup.appendCell(new ConfigCellCustom("HiddenChatAutoExitTime", CellGroup.ITEM_TYPE_TEXT_SETTINGS_CELL, true));
     private final AbstractConfigCell dividerExtraSettings = cellGroup.appendCell(new ConfigCellDivider());
 
